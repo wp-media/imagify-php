@@ -1,13 +1,15 @@
 # imagify-php
 > Imagify API client library for PHP
 
-**WORK IN PROGRESS**
-
 ## Installation
 
 ```bash
-$ composer install wp-media/imagify-php
+$ composer require wp-media/imagify-php
 ```
+
+## Documentation
+
+[https://imagify.io/docs/api/](https://imagify.io/docs/api/)
 
 ## Copyright and license
 
