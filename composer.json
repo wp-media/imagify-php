@@ -3,7 +3,7 @@
     "description": "Imagify API client library for PHP",
     "require": {
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
         {
