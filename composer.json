@@ -1,6 +1,7 @@
 {
     "name": "wp-media/imagify-php",
     "description": "Imagify API client library for PHP",
+    "version": "1.0.0",
     "license": "MIT",
     "authors": [
         {
@@ -8,6 +9,11 @@
             "email": "contact@wp-media.me"
         }
     ],
+    "config": {
+        "platform": {
+            "php": ">=5.4.0"
+        }
+    },
     "require": {
         "ext-curl": "*"
     },
