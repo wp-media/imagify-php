@@ -1,14 +1,17 @@
 {
     "name": "wp-media/imagify-php",
     "description": "Imagify API client library for PHP",
-    "require": {
-    },
-    "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
         {
             "name": "WP Media",
             "email": "contact@wp-media.me"
         }
-    ]
+    ],
+    "require": {
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "classmap": ["class-imagify.php"]
+    }
 }
