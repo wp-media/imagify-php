@@ -96,22 +96,29 @@ class Optimizer {
         $default = array(
             'level'     => 'aggressive',
             'resize'    => array(),
-            'keep_exif' => false
+            'keep_exif' => false,
+            'timeout'   => 45 
         );
 
         $options = array_merge( $default, $options );
         
         $data = array(
             'image' => curl_file_create( $image ),
-            'data'  => json_encode( array(
-                'aggressive' => ( 'aggressive' === $options['level'] ) ? true : false,
-                'ultra'      => ( 'ultra' === $options['level'] ) ? true : false,
-                'resize'     => $options['resize'],
-                'keep_exif'  => $options['keep_exif'],
-            ) )
+            'data'  => json_encode( 
+                array(
+                    'aggressive' => ( 'aggressive' === $options['level'] ) ? true : false,
+                    'ultra'      => ( 'ultra' === $options['level'] ) ? true : false,
+                    'resize'     => $options['resize'],
+                    'keep_exif'  => $options['keep_exif'],
+                ) 
+            )
         );
 
-        return $this->request( '/upload/', array( 'post_data' => $data ) );
+        return $this->request( '/upload/', array( 
+                'post_data' => $data,
+                'timeout'   => $options["timeout"]
+            ) 
+        );
     }
 
     /**
@@ -122,8 +129,10 @@ class Optimizer {
      * @return object
      **/
     private function request( $url, $options = array() ) {
-
-        $default = array( 'method' => 'POST', 'post_data' => null, 'timeout' => 45 );
+        $default = array( 
+            'method'    => 'POST', 
+            'post_data' => null
+        );
         $options = array_merge( $default, $options );
 
         try {
