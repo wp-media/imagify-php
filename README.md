@@ -11,6 +11,11 @@ $ composer require wp-media/imagify-php
 
 [https://imagify.io/docs/api/](https://imagify.io/docs/api/)
 
+## Contributors
+- Thomas Deneulin - [GitHub](https://github.com/Gmulti)
+- Jérôme Tamarelle - [GitHub](https://github.com/GromNaN)
+- Clément JOBEILI - [GitHub](https://github.com/cjobeili)
+
 ## Copyright and license
 
 Copyright 2015-2016 WP Media. Released under [MIT](http://opensource.org/licenses/MIT).

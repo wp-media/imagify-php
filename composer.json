@@ -1,12 +1,18 @@
 {
     "name": "wp-media/imagify-php",
     "description": "Imagify API client library for PHP",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "license": "MIT",
     "authors": [
         {
             "name": "WP Media",
-            "email": "contact@wp-media.me"
+            "email": "contact@wp-media.me",
+            "role": "Developer"
+        },
+        {
+            "name": "Clément JOBEILI",
+            "email": "contact@yurplan.com",
+            "role": "Contributor"
         }
     ],
     "require": {

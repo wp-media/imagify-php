@@ -57,8 +57,6 @@ class Optimizer {
             die('cURL isn\'t installed on the server.');
         }
 
-        /*$this->headers['Accept']        = 'Accept: application/json';
-        $this->headers['Content-Type']  = 'Content-Type: application/json';*/
         $this->headers['Authorization'] = 'Authorization: token ' . $this->api_key;
     }
 
