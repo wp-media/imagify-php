@@ -87,12 +87,6 @@ class Optimizer {
             return (object) array('success' => false, 'message' => 'Image not readable!');
         }
 
-        if ( !function_exists('curl_file_create') ) {
-            function curl_file_create($filename, $mimetype = '', $postname = '') {
-                return "@$filename;filename=" . ( $postname ?: basename($filename) ) . ( $mimetype ? ";type=$mimetype" : '' );
-            }
-        }
-
         $default = array(
             'level'     => 'aggressive',
             'resize'    => array(),
@@ -103,7 +97,7 @@ class Optimizer {
         $options = array_merge( $default, $options );
         
         $data = array(
-            'image' => curl_file_create( $image ),
+            'image' => $this->createFile( $image ),
             'data'  => json_encode( 
                 array(
                     'aggressive' => ( 'aggressive' === $options['level'] ) ? true : false,
@@ -119,6 +113,10 @@ class Optimizer {
                 'timeout'   => $options["timeout"]
             ) 
         );
+    }
+
+    private function createFile( $image, $mimetype = '', $postname = '' ) {
+        return "@$filename;filename=" . ( $postname ?: basename($filename) ) . ( $mimetype ? ";type=$mimetype" : '' );
     }
 
     /**
