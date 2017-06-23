@@ -15,8 +15,12 @@
             "role": "Contributor"
         }
     ],
+    "config": {
+        "platform": {
+            "php": "5.4"
+        }
+    },
     "require": {
-        "php": ">=5.4.0",
         "ext-curl": "*"
     },
     "autoload": {
