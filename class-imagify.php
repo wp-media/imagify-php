@@ -114,7 +114,7 @@ class Optimizer {
     }
 
     private function createFile( $image, $mimetype = '', $postname = '' ) {
-        return "@$filename;filename=" . ( $postname ?: basename($filename) ) . ( $mimetype ? ";type=$mimetype" : '' );
+        return "@$image;filename=" . ( $postname ?: basename($image) ) . ( $mimetype ? ";type=$mimetype" : '' );
     }
 
     /**
