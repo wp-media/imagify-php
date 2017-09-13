@@ -18,11 +18,11 @@ $ composer require wp-media/imagify-php
 
 ## Copyright and license
 
-Copyright 2015-2016 WP Media. Released under [MIT](http://opensource.org/licenses/MIT).
+Copyright 2015-2017 WP Media. Released under [MIT](http://opensource.org/licenses/MIT).
 
 **The MIT License (MIT)**
 
-Copyright (c) 2015 
+Copyright (c) 2017
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

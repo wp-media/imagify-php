@@ -46,7 +46,7 @@ class Optimizer {
      * The constructor
      *
      * @return void
-     **/
+     */
     public function __construct( $api_key = '' ) {
         if ( ! empty( $api_key ) ) {
             $this->api_key = $api_key;
@@ -59,7 +59,6 @@ class Optimizer {
 
         $this->headers['Authorization'] = 'Authorization: token ' . $this->api_key;
     }
-
 
     /**
      * Optimize an image from its binary content.
@@ -76,9 +75,8 @@ class Optimizer {
      *                             'keep_exif' => bool (default: false)
      *                         ) 
      * @return array
-     **/
+     */
     public function optimize( $image, $options = array() ) {
-
         if ( !is_string($image) || !is_file($image) ) {
             return (object) array('success' => false, 'message' => 'Image incorrect!');
         } else if ( !is_readable($image) ) {
@@ -95,8 +93,8 @@ class Optimizer {
         $options = array_merge( $default, $options );
         
         $data = array(
-            'image' => $this->createFile( $image ),
-            'data'  => json_encode( 
+            'image' => curl_file_create( $image ),
+            'data'  => json_encode(
                 array(
                     'aggressive' => ( 'aggressive' === $options['level'] ) ? true : false,
                     'ultra'      => ( 'ultra' === $options['level'] ) ? true : false,
@@ -113,17 +111,13 @@ class Optimizer {
         );
     }
 
-    private function createFile( $image, $mimetype = '', $postname = '' ) {
-        return "@$image;filename=" . ( $postname ?: basename($image) ) . ( $mimetype ? ";type=$mimetype" : '' );
-    }
-
     /**
      * Make an HTTP call using curl.
      *
      * @param  string $url       The URL to call
      * @param  array  $options   Optional request options
      * @return object
-     **/
+     */
     private function request( $url, $options = array() ) {
         $default = array( 
             'method'    => 'POST', 
@@ -132,11 +126,10 @@ class Optimizer {
         $options = array_merge( $default, $options );
 
         try {
+            $ch     = curl_init();
+            $is_ssl = ( isset( $_SERVER['HTTPS'] ) && ( 'on' == strtolower( $_SERVER['HTTPS'] ) || '1' == $_SERVER['HTTPS'] ) ) || ( isset( $_SERVER['SERVER_PORT'] ) && ( '443' == $_SERVER['SERVER_PORT'] ) );
 
-            $ch      = curl_init();
-            $is_ssl  = ( isset( $_SERVER['HTTPS'] ) && ( 'on' == strtolower( $_SERVER['HTTPS'] ) || '1' == $_SERVER['HTTPS'] ) ) || ( isset( $_SERVER['SERVER_PORT'] ) && ( '443' == $_SERVER['SERVER_PORT'] ) );
-
-            if ( 'POST' == $options['method'] ) {
+            if ( 'POST' === $options['method'] ) {
                 curl_setopt( $ch, CURLOPT_POST, true );
                 curl_setopt( $ch, CURLOPT_POSTFIELDS, $options['post_data'] );
             }
@@ -159,9 +152,9 @@ class Optimizer {
             return (object) array('success' => false, 'message' => 'Unknown error occurred');
         }
 
-        if ( 200 != $http_code && isset( $response->code, $response->detail ) ) {
+        if ( 200 !== $http_code && isset( $response->code, $response->detail ) ) {
             return $response;
-        } elseif ( 200 != $http_code ) {
+        } elseif ( 200 !== $http_code ) {
             return (object) array('success' => false, 'message' => 'Unknown error occurred');
         }
 
